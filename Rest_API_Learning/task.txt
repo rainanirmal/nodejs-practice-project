@@ -1,0 +1,12 @@
+REST - JSON
+
+GET /Users - list all the Users
+
+GET /Users/1 - GET user with ID 1
+GET /Users/2 - GET user with ID 2
+
+POST /Users - Create new user
+
+PATCH /Users/1 - Edit user with ID 1
+
+DELETE /Users/1 - Delete user with ID 2
