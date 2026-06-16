@@ -45,6 +45,18 @@ app.get('/users' , async (request , response) => {
     </ul>
     `;
     response.send(html);
+});
+
+app.get('/api/users' , async (request , response) => {
+    const allUsers = await User.find({});
+
+    response.json(allUsers);
+})
+
+app.get('/api/users/:id' , async (request , response) => {
+    const user = await User.findById(request.params.id);
+
+    response.json(user);
 })
 
 app.post('/api/users' , async (request , response) => {
@@ -65,6 +77,20 @@ app.post('/api/users' , async (request , response) => {
     console.log("Result : " + result);
 
     return response.json({ msg : "User created successfully"});
+});
+
+app.patch('/api/users/:id' , async (request , response) => {
+    const body = request.body;
+
+    await User.findByIdAndUpdate(request.params.id , {
+        first_name : body.first_name ,
+        last_name : body.last_name , 
+        email : body.email , 
+        gender : body.gender , 
+        job_title : body.job_title
+    });
+
+    return response.json({ msg : "Success"});
 });
 
 app.listen(8000 , () => {
