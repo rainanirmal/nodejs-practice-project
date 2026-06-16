@@ -93,6 +93,12 @@ app.patch('/api/users/:id' , async (request , response) => {
     return response.json({ msg : "Success"});
 });
 
+app.delete('/api/users/:id' , async (request , response) => {
+    const user = await User.findByIdAndDelete(request.params.id);
+
+    return response.json({ msg : "Deleted successfully"});
+} )
+
 app.listen(8000 , () => {
     console.log("Server started !");
 })
