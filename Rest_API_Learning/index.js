@@ -44,8 +44,14 @@ app.patch("/api/users/:id" , (request , response) => {
 });
 
 app.delete("/api/users/:id" , (request , response) => {
-    // TODO : to delete existing user with id
-    return response.json({status : "pending"});
+    const id = Number(request.params.id);
+    // console.log(id);
+    const index = users.findIndex((user) => user.id === id); // returns the position in array that is 1001 if id is 1002
+    // console.log(index);
+    users.splice(index , 1);
+    fs.writeFile('./MOCK_DATA.json' , JSON.stringify(users) , (err , data) => {
+        return response.json({status : "success"});
+    });
 });
 
 app.listen(PORT , () => {
