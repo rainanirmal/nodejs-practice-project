@@ -39,8 +39,19 @@ app.post("/api/users" , (request , response) => {
 });
 
 app.patch("/api/users/:id" , (request , response) => {
-    // TODO : to edit existing user with id
-    return response.json({status : "pending"});
+    const body = request.body;
+    const id = Number(request.params.id);
+    const user = users.find((user) => user.id === id);
+    // console.log(user);
+    user.first_name = body.first_name;
+    user.last_name = body.last_name;
+    user.email = body.email;
+    user.gender = body.gender;
+    user.job_title = body.job_title;
+    fs.writeFile('./MOCK_DATA.json' , JSON.stringify(users) , (err , data) => {
+        return response.json({status : "success"});
+    })
+   
 });
 
 app.delete("/api/users/:id" , (request , response) => {
