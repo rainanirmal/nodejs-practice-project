@@ -36,8 +36,15 @@ const User = mongoose.model("user" , userSchema);
 
 app.use(express.urlencoded({ extended : false}));
 
-app.get('/' , (request , response) => {
-    response.end("Hello ! Testing ..");
+app.get('/users' , async (request , response) => {
+    const allUsers = await User.find({});
+
+    const html = `
+    <ul>
+        ${allUsers.map((user) => `<li>${user.first_name} - ${user.email}</li>`)}
+    </ul>
+    `;
+    response.send(html);
 })
 
 app.post('/api/users' , async (request , response) => {
