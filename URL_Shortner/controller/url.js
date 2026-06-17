@@ -21,6 +21,31 @@ async function handleGenerateURL(request , response) {
     })
 }
 
+async function handleRedirectURL(request , response) {
+    
+    const shortId = request.params.shortId;
+
+    const entry = await URL.findOne({
+        shortId,
+    });
+
+    if(!entry) {
+        return response.json({
+            msg : "Short URL not found",
+        });
+    }
+
+    entry.visitHistory.push({
+        timestamp : Date.now(),
+    });
+
+    await entry.save();
+
+    return response.redirect(entry.redirectURL);
+
+}
+
 module.exports = {
     handleGenerateURL,
+    handleRedirectURL,
 }
