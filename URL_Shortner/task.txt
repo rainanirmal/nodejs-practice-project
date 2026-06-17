@@ -1,0 +1,8 @@
+Routes : 
+
+POST/URL -- generate new short url and returns the shortened url in format for com.example/random-id
+
+GET/:id -- redirects to the original url
+
+GET/URL/analytics/:id - returns the clicks for the provided short id
+
