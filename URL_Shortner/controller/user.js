@@ -9,7 +9,7 @@ async function handleUserSignUp(request , response) {
         password : body.password,
     });
 
-    return response.render("home");
+    return response.redirect("/");
 }
 
 async function handleSignup(request , response) {
@@ -17,7 +17,28 @@ async function handleSignup(request , response) {
     return response.render("signup");
 }
 
+async function handleUserLogin(request , response) {
+    const { email , password } = request.body;
+
+    const user = await USER.findOne({email , password});
+
+    if(!user) {
+        return response.render("login" , {
+            error : "Invalid email or password",
+        });
+    }
+
+    return response.redirect("/");
+}
+
+async function handleLogin(request , response) {
+    
+    return response.render("login");
+}
+
 module.exports = {
     handleUserSignUp,
     handleSignup,
+    handleLogin,
+    handleUserLogin,
 };
