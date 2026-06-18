@@ -1,7 +1,9 @@
 const express = require("express");
 const connectToMongoDB = require("./connect");
 const path = require("path");
+
 const URLRouter = require("./routes/url");
+const UserRouter = require("./routes/user");
 
 const app = express();
 
@@ -21,6 +23,7 @@ connectToMongoDB("mongodb://127.0.0.1:27017/url-shortner")
 
 app.use('/' , URLRouter);
 app.use('/URL' , URLRouter);
+app.use('/user' , UserRouter);
 
 app.listen(8000 , () => {
     console.log("Server started !");
