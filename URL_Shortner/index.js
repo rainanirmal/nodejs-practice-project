@@ -1,8 +1,12 @@
 const express = require("express");
 const connectToMongoDB = require("./connect");
+const path = require("path");
 const URLRouter = require("./routes/url");
 
 const app = express();
+
+app.set("view engine" , "ejs");
+app.set("views" , path.resolve("./views"));
 
 app.use(express.json());
 
