@@ -17,9 +17,9 @@ async function handleGenerateURL(request , response) {
         visitHistory : [],
     })
 
-    return response.json({
+    return response.render("home" , {
         shortId : shortID,
-    })
+    });
 }
 
 async function handleRedirectURL(request , response) {
