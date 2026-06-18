@@ -1,5 +1,6 @@
 const shortid = require("shortid");
 const URL = require("../models/url");
+const { all } = require("../routes/url");
 
 async function handleGenerateURL(request , response) {
 
@@ -65,8 +66,16 @@ async function handleGenerateAnalytics(request , response) {
     });
 }
 
+async function handleTest(request , response) {
+    const allUsers = await URL.find({});
+    return response.render("home" , {
+        urls : allUsers,
+    });
+}
+
 module.exports = {
     handleGenerateURL,
     handleRedirectURL,
     handleGenerateAnalytics,
+    handleTest,
 }

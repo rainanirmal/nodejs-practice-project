@@ -18,8 +18,8 @@ connectToMongoDB("mongodb://127.0.0.1:27017/url-shortner")
     console.log("MongoDB error : " + err);
 })
 
-app.use('/URL' , URLRouter);
 app.use('/' , URLRouter);
+app.use('/URL' , URLRouter);
 
 app.listen(8000 , () => {
     console.log("Server started !");
