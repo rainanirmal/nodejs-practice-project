@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get('/' , restrictToLoggedUserOnly , handleTest);
 router.post('/URL', restrictToLoggedUserOnly , handleGenerateURL);
-router.get('/analytics/:shortId' , handleGenerateAnalytics);
+router.get('/analytics/:shortId' ,  restrictToLoggedUserOnly , handleGenerateAnalytics);
 router.get('/:shortId' , handleRedirectURL);
 
 module.exports = router;

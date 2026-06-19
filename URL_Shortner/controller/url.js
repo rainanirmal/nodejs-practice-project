@@ -15,6 +15,7 @@ async function handleGenerateURL(request , response) {
         shortId : shortID,
         redirectURL : body.url,
         visitHistory : [],
+        createdBy : request.user._id,
     })
 
     return response.render("home" , {
@@ -67,7 +68,9 @@ async function handleGenerateAnalytics(request , response) {
 }
 
 async function handleTest(request , response) {
-    const allUsers = await URL.find({});
+    const allUsers = await URL.find({
+        createdBy: request.user._id,
+    });
     return response.render("home" , {
         urls : allUsers,
     });

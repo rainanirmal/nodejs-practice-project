@@ -11,7 +11,7 @@ async function handleUserSignUp(request , response) {
         password : body.password,
     });
 
-    return response.redirect("/");
+    return response.redirect("/user/login");
 }
 
 async function handleSignup(request , response) {
