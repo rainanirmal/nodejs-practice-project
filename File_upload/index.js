@@ -27,7 +27,9 @@ app.get('/' , (request , response) => {
     return response.render("homepage");
 })
 
-app.post('/upload' , upload.single("profileImage") , (request , response) => {});
+app.post('/upload' , uploads.single("profileImage") , (request , response) => {
+    return response.redirect("/");
+});
 
 app.listen(PORT , () => {
     console.log("Server started !");
