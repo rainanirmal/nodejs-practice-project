@@ -12,6 +12,17 @@ app.set("views" , path.resolve("./views"));
 
 app.use(express.urlencoded({ extended : false}));
 
+const storage = multer.diskStorage({
+  destination: function (request , file , cb) {
+    return cb(null , "./uploads");
+  },
+  filename: function (request , file , cb) {
+    return cb(null , `${Date.now()}-${file.originalname}`);
+  }
+});
+
+const uploads = multer({ storage });
+
 app.get('/' , (request , response) => {
     return response.render("homepage");
 })
