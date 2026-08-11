@@ -16,7 +16,12 @@ app.post("/teas" , (req, res) => {
     teaData.push(newTea);
 
     return res.status(201).send(newTea);
-})
+});
+
+app.get("/teas", (req, res) => {
+
+    return res.status(200).send(teaData);
+});
 
 app.listen(port, () => {
     console.log(`Server started on ${port}`);
