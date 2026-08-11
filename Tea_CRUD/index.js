@@ -23,6 +23,21 @@ app.get("/teas", (req, res) => {
     return res.status(200).send(teaData);
 });
 
+app.get("/teas/:id" , (req, res) => {
+
+    console.log(req.params.id);
+
+    const tea = teaData.find(t => Number(t.id) === Number(req.params.id));
+
+    console.log(tea);
+
+    if(!tea) {
+        return res.status(404).send("Tea not found !");
+    }
+
+    return res.status(200).send(tea);
+})
+
 app.listen(port, () => {
     console.log(`Server started on ${port}`);
 });
