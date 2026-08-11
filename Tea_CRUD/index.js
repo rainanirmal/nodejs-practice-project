@@ -53,7 +53,20 @@ app.put("/teas/:id", (req, res) => {
 
     return res.status(200).send(tea);
 
-})
+});
+
+app.delete("/teas/:id", (req, res) => {
+
+    const index = teaData.findIndex(t => Number(t.id) === Number(req.params.id));
+
+    if(index === -1) {
+        return res.status(404).send("Tea not found !");
+    }
+
+    teaData.splice(index, 1);
+
+    return res.status(204).send("Tea deleted");
+});
 
 app.listen(port, () => {
     console.log(`Server started on ${port}`);
