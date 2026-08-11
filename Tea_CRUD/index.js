@@ -36,6 +36,23 @@ app.get("/teas/:id" , (req, res) => {
     }
 
     return res.status(200).send(tea);
+});
+
+app.put("/teas/:id", (req, res) => {
+
+    const tea = teaData.find(t => Number(t.id) === Number(req.params.id));
+
+    if(!tea) {
+        return res.status(404).send("Tea not found !");
+    }
+
+    const { name, price } = req.body;
+
+    tea.name = name;
+    tea.price = price;
+
+    return res.status(200).send(tea);
+
 })
 
 app.listen(port, () => {
